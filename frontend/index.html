@@ -1,1 +1,62 @@
-frontend/index.html
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sad-Mar Zamówienia</title>
+<style>
+body{
+font-family:sans-serif;
+background:#f3f3f3;
+padding:20px;
+}
+.card{
+background:white;
+padding:20px;
+border-radius:14px;
+max-width:500px;
+margin:auto;
+box-shadow:0 4px 20px rgba(0,0,0,0.1);
+}
+textarea,input{
+width:100%;
+padding:10px;
+margin-top:8px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+button{
+margin-top:15px;
+padding:12px;
+border:none;
+border-radius:10px;
+background:#2c7a2c;
+color:white;
+font-weight:bold;
+width:100%;
+}
+</style>
+</head>
+<body>
+<div class="card">
+<h2>Sad-Mar zamówienia</h2>
+
+<label>Kod klienta</label>
+<input id="code">
+
+<label>Treść zamówienia</label>
+<textarea id="order"></textarea>
+
+<button onclick="send()">Wyślij zamówienie</button>
+
+<p id="msg"></p>
+</div>
+
+<script>
+async function send(){
+document.getElementById("msg").innerText="Wysłano (demo)";
+}
+</script>
+</body>
+</html>
+
