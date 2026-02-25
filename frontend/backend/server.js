@@ -34,7 +34,8 @@ app.post("/send-order", async (req, res) => {
   }
 });
 
-app.listen(10000, () => {
-  console.log("Backend działa");
+const PORT = process.env.PORT || 10000;
+app.listen(PORT, () => {
+  console.log("Backend działa na porcie", PORT);
 });
 
