@@ -47,16 +47,45 @@ width:100%;
 <label>Treść zamówienia</label>
 <textarea id="order"></textarea>
 
-<button onclick="send(https://sadmar-backend.onrender.com, {
+<button id="btn" onclick="send()">Wyślij zamówienie</button>
 
 <p id="msg"></p>
-</div>
 
 <script>
-async function send(){
-document.getElementById("msg").innerText="Wysłano (demo)";
+async function send() {
+  const btn = document.getElementById("btn");
+  const msg = document.getElementById("msg");
+
+  const klient = document.getElementById("code").value.trim();
+  const tresc = document.getElementById("order").value.trim();
+  const telefon = ""; // na razie puste, można dodać pole później
+
+  if (!klient || !tresc) {
+    msg.innerText = "Uzupełnij kod klienta i treść zamówienia.";
+    return;
+  }
+
+  btn.disabled = true;
+  msg.innerText = "Wysyłam...";
+
+  try {
+    const res = await fetch("https://sadmar-backend.onrender.com/send-order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ klient, telefon, tresc })
+    });
+
+    if (!res.ok) throw new Error("HTTP " + res.status);
+
+    msg.innerText = "Wysłano ✅";
+    document.getElementById("order").value = "";
+  } catch (e) {
+    console.error(e);
+    msg.innerText = "Błąd wysyłki ❌ (sprawdź backend / logi Render)";
+  } finally {
+    btn.disabled = false;
+  }
 }
 </script>
-</body>
-</html>
+
 
