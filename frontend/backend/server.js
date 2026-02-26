@@ -16,7 +16,7 @@ app.post("/send-order", async (req, res) => {
       secure: false,
       auth: {
         user: "sadmar7@poczta.fm",
-        pass: "TWOJE_HASLO_MAILA"
+        pass: process.env.SMTP_PASS
       }
     });
 
